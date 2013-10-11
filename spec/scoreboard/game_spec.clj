@@ -36,4 +36,3 @@
 
     (it "returns 2 when side two has won the game"
       (should= 2 (winner (make-score 0 11))))))
-
