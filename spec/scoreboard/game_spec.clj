@@ -15,7 +15,7 @@
     (it "adds a point to player two's score"
       (should= [0 1] (score-point zero 2))))
 
-  (context "/gameover?"
+  (context "/finished?"
     (let [test-cases [[0  0  false]
                       [11 0  true]
                       [0  11 true]
@@ -25,7 +25,7 @@
                       [12 12 false]]]
       (for [[player-one player-two expected] test-cases]
         (it (str "determines game is " (if (= expected false) "not ") "over when score is [" player-one " " player-two "]")
-          (should= expected (gameover? (make-score player-one player-two)))))))
+          (should= expected (finished? (make-score player-one player-two)))))))
 
   (context "/winner"
     (it "returns nil when game is not over"

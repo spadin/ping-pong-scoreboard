@@ -26,7 +26,7 @@
         points (nth score index)]
     (assoc score index (inc points))))
 
-(defn gameover?
+(defn finished?
   "Determines if the game is over based on the score."
   [score]
   (cond
@@ -37,5 +37,5 @@
 (defn winner
   "Determines the winner of the game."
   [score]
-  (if (gameover? score)
+  (if (finished? score)
     (winning-player score)))

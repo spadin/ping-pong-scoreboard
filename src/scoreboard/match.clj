@@ -8,7 +8,7 @@
   (comp first keep-indexed))
 
 (defn- game-in-play [index game]
-  (if-not (game/gameover? game) index))
+  (if-not (game/finished? game) index))
 
 (defn current-game-index
   "Returns the current game index in the match."
