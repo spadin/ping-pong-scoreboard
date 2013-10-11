@@ -31,7 +31,23 @@
         new-score (game/score-point game player)]
     (assoc match index new-score)))
 
-(defn match-completed?
+(defn- count-wins-for-player [match player]
+  (reduce (fn [acc value]
+            (if (= (game/winner value) player)
+              (inc acc) acc))
+          0 match))
+
+(defn- player-won? [match player]
+  (>= (count-wins-for-player match player) 2))
+
+(defn finished?
   "Check if match is finished"
   [match]
-  false)
+  (or
+    (player-won? match 1)
+    (player-won? match 2)))
+
+(defn winner [match]
+  (if (finished? match)
+    (if (player-won? match 1) 1 2)
+    nil))
