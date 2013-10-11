@@ -1,9 +1,7 @@
 (ns scoreboard.game-spec
-  (:require [speclj.core     :refer :all]
-            [scoreboard.game :refer :all]))
-
-(defn make-score [player-one player-two]
-  [player-one player-two])
+  (:require [speclj.core            :refer :all]
+            [scoreboard.spec-helper :refer [make-score]]
+            [scoreboard.game        :refer :all]))
 
 (describe "scoreboard.game"
   (context "/zero"
