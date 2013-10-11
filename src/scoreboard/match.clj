@@ -24,32 +24,32 @@
   (nth match (current-game-index match)))
 
 (defn score-point
-  "Score a point for a player in the current game."
-  [match player]
+  "Score a point for a side in the current game."
+  [match side]
   (let [index     (current-game-index match)
         game      (current-game match)
-        new-score (game/score-point game player)]
+        new-score (game/score-point game side)]
     (assoc match index new-score)))
 
-(defn- count-wins-for-player [match player]
+(defn- count-wins-for-side [match side]
   (reduce (fn [acc value]
-            (if (= (game/winner value) player)
+            (if (= (game/winner value) side)
               (inc acc) acc))
           0 match))
 
-(defn- player-won? [match player]
-  (>= (count-wins-for-player match player) 2))
+(defn- side-won? [match side]
+  (>= (count-wins-for-side match side) 2))
 
 (defn finished?
   "Check if match is finished."
   [match]
   (or
-    (player-won? match 1)
-    (player-won? match 2)))
+    (side-won? match 1)
+    (side-won? match 2)))
 
 (defn winner
   "Determines the winner of the match."
   [match]
   (if (finished? match)
-    (if (player-won? match 1) 1 2)
+    (if (side-won? match 1) 1 2)
     nil))

@@ -1,28 +1,28 @@
 (ns scoreboard.game)
 
-(defn- player-one-score [score]
+(defn- side-one-score [score]
   (nth score 0))
 
-(defn- player-two-score [score]
+(defn- side-two-score [score]
   (nth score 1))
 
 (defn- score-difference [score]
-  (Math/abs (- (player-one-score score) (player-two-score score))))
+  (Math/abs (- (side-one-score score) (side-two-score score))))
 
 (defn- highest-score [score]
-  (max (player-one-score score) (player-two-score score)))
+  (max (side-one-score score) (side-two-score score)))
 
-(defn- winning-player [score]
-  (if (= (highest-score score) (player-one-score score)) 1 2))
+(defn- winning-side [score]
+  (if (= (highest-score score) (side-one-score score)) 1 2))
 
 (def zero
   "Returns the base score for a game [0 0]."
   [0 0])
 
 (defn score-point
-  "Add a point to a player"
-  [score player]
-  (let [index  (dec player)
+  "Add a point to a side"
+  [score side]
+  (let [index  (dec side)
         points (nth score index)]
     (assoc score index (inc points))))
 
@@ -38,4 +38,4 @@
   "Determines the winner of the game."
   [score]
   (if (finished? score)
-    (winning-player score)))
+    (winning-side score)))

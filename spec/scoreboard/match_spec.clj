@@ -8,10 +8,10 @@
   (with won-game (make-score 15 0))
   (with in-progress-game (make-score 5 2))
   (with unplayed-game game/zero)
-  (with player-1-win (make-score 15 0))
-  (with player-2-win (make-score 0 15))
-  (with player-1-winning-match (make-match @player-1-win @player-1-win @unplayed-game))
-  (with player-2-winning-match (make-match @player-2-win @player-2-win @unplayed-game))
+  (with side-1-win (make-score 15 0))
+  (with side-2-win (make-score 0 15))
+  (with side-1-winning-match (make-match @side-1-win @side-1-win @unplayed-game))
+  (with side-2-winning-match (make-match @side-2-win @side-2-win @unplayed-game))
 
   (context "/new-match"
     (it "contains three zero games"
@@ -36,11 +36,11 @@
   (context "/score-point"
     (with in-progress-match (make-match @won-game @unplayed-game @unplayed-game))
 
-    (it "adds a point to player 1 in the first game"
+    (it "adds a point to side 1 in the first game"
       (should= (make-match (make-score 1 0) game/zero game/zero)
                (score-point new-match 1)))
 
-    (it "adds a point to player 2 in the second game"
+    (it "adds a point to side 2 in the second game"
       (should= (make-match @won-game (make-score 0 1) @unplayed-game)
                (score-point @in-progress-match 2))))
 
@@ -49,23 +49,23 @@
       (should= false
                (finished? new-match)))
 
-    (it "determines match is completed when player 1 wins two games"
+    (it "determines match is completed when side 1 wins two games"
       (should= true
-              (finished? @player-1-winning-match)))
+              (finished? @side-1-winning-match)))
 
-    (it "determines match is completed when player 2 wins two games"
+    (it "determines match is completed when side 2 wins two games"
       (should= true
-              (finished? @player-2-winning-match))))
+              (finished? @side-2-winning-match))))
 
   (context "/winner"
     (it "determines nobody has won a new match"
       (should= nil
                (winner new-match)))
 
-    (it "determines player 1 has won the match"
+    (it "determines side 1 has won the match"
       (should= 1
-               (winner @player-1-winning-match)))
+               (winner @side-1-winning-match)))
 
-    (it "determines player 2 has won the match"
+    (it "determines side 2 has won the match"
       (should= 2
-               (winner @player-2-winning-match)))))
+               (winner @side-2-winning-match)))))
