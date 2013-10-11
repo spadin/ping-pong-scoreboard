@@ -1,4 +1,4 @@
-(defproject org.clojars.sandropadin/ping-pong-scoreboard "0.1.0-SNAPSHOT"
+(defproject org.clojars.sandropadin/ping-pong-scoreboard "0.2.0-SNAPSHOT"
   :description "Ping Pong Scoreboard"
   :url "http://spadin.github.io/ping-pong-scoreboard"
   :license {:name "Apache Licence, Version 2.0"
