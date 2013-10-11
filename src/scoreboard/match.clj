@@ -24,7 +24,7 @@
   (nth match (current-game-index match)))
 
 (defn score-point
-  "Score a point for a player in the current game"
+  "Score a point for a player in the current game."
   [match player]
   (let [index     (current-game-index match)
         game      (current-game match)
@@ -41,13 +41,15 @@
   (>= (count-wins-for-player match player) 2))
 
 (defn finished?
-  "Check if match is finished"
+  "Check if match is finished."
   [match]
   (or
     (player-won? match 1)
     (player-won? match 2)))
 
-(defn winner [match]
+(defn winner
+  "Determines the winner of the match."
+  [match]
   (if (finished? match)
     (if (player-won? match 1) 1 2)
     nil))
