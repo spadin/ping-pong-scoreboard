@@ -1,11 +1,8 @@
 (ns scoreboard.match-spec
   (:require [speclj.core            :refer :all]
-            [scoreboard.spec-helper :refer [make-score]]
+            [scoreboard.spec-helper :refer [make-score make-match]]
             [scoreboard.match       :refer :all]
             [scoreboard.game        :as game]))
-
-(defn make-match [game-1 game-2 game-3]
-  [game-1 game-2 game-3])
 
 (describe "scoreboard.match"
   (with won-game (make-score 15 0))
