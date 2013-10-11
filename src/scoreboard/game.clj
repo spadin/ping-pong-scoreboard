@@ -1,4 +1,4 @@
-(ns scoreboard.core)
+(ns scoreboard.game)
 
 (defn- player-one-score [score]
   (nth score 0))

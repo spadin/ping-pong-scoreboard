@@ -1,23 +1,23 @@
-(ns scoreboard.core-spec
+(ns scoreboard.game-spec
   (:require [speclj.core     :refer :all]
-            [scoreboard.core :refer :all]))
+            [scoreboard.game :refer :all]))
 
 (defn make-score [player-one player-two]
   [player-one player-two])
 
-(describe "scoreboard.core"
-  (context "scoreboard.core"
+(describe "scoreboard.game"
+  (context "/zero"
     (it "is [0 0]"
       (should= [0 0] zero)))
 
-  (context "scoreboard.core"
+  (context "/score-point"
     (it "adds a point to player one's score"
       (should= [1 0] (score-point zero 1)))
 
     (it "adds a point to player two's score"
       (should= [0 1] (score-point zero 2))))
 
-  (context "scoreboard.core"
+  (context "/gameover?"
     (let [test-cases [[0  0  false]
                       [11 0  true]
                       [0  11 true]
@@ -29,7 +29,7 @@
         (it (str "determines game is " (if (= expected false) "not ") "over when score is [" player-one " " player-two "]")
           (should= expected (gameover? (make-score player-one player-two)))))))
 
-  (context "scoreboard.core"
+  (context "/winner"
     (it "returns nil when game is not over"
       (should= nil (winner zero)))
 
