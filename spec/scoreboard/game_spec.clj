@@ -1,6 +1,6 @@
 (ns scoreboard.game-spec
   (:require [speclj.core            :refer :all]
-            [scoreboard.spec-helper :refer [make-score]]
+            [scoreboard.spec-helper :refer [make-score not-text]]
             [scoreboard.game        :refer :all]))
 
 (describe "scoreboard.game"
@@ -24,7 +24,7 @@
                       [12 10 true]
                       [12 12 false]]]
       (for [[side-one side-two expected] test-cases]
-        (it (str "determines game is " (if (= expected false) "not ") "over when score is [" side-one " " side-two "]")
+        (it (str "determines game is " (not-text expected) "over when score is [" side-one " " side-two "]")
           (should= expected (finished? (make-score side-one side-two)))))))
 
   (context "/winner"

@@ -5,3 +5,6 @@
 
 (defn make-match [game-1 game-2 game-3]
   [game-1 game-2 game-3])
+
+(defn not-text [bool]
+  (if (= bool false) "not " ""))
